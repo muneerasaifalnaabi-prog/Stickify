@@ -1,0 +1,241 @@
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  
+  --border-radius-base: 24px;
+  --border-radius-pill: 9999px;
+  
+  --border-width-thick: 4px;
+  --border-width-thin: 2px;
+  
+  --shadow-offset: 6px;
+  --shadow-color: #000000;
+  
+  --font-base: var(--font-inter), sans-serif;
+  --font-display: var(--font-titan), cursive, sans-serif;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-base);
+  line-height: 1.5;
+  overflow-x: hidden; /* Prevent horizontal scroll from decorative elements */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: normal; /* Titan One is naturally bold */
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-base);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+/* Utility Classes for Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-8 { gap: 2rem; }
+
+/* Hand-drawn / Meme Style Components */
+
+.meme-button {
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-pill);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.meme-button:hover {
+  transform: translateY(-2px);
+}
+
+.meme-button-outline {
+  background-color: var(--background);
+  color: var(--foreground);
+  border: var(--border-width-thin) solid var(--foreground);
+}
+
+.meme-button-outline:hover {
+  box-shadow: 4px 4px 0px 0px var(--shadow-color);
+  transform: translate(-2px, -2px);
+}
+
+/* Navbar specific */
+.navbar {
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-links a {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  position: relative;
+}
+
+.nav-links a:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background-color: var(--foreground);
+  border-radius: 2px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--foreground);
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.social-pink { background-color: #ff6b8b; }
+.social-blue { background-color: #4db8ff; }
+.social-orange { background-color: #ffa500; }
+.social-darkblue { background-color: #0077b5; }
+
+/* Hero Section */
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 8rem);
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-element {
+  position: absolute;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Editor Section */
+.editor-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  min-height: 600px;
+}
+
+.editor-sidebar {
+  width: 300px;
+  border: var(--border-width-thick) solid var(--foreground);
+  border-radius: var(--border-radius-base);
+  padding: 1.5rem;
+  background-color: white;
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-canvas-wrapper {
+  flex: 1;
+  border: var(--border-width-thick) solid var(--foreground);
+  border-radius: var(--border-radius-base);
+  background-image: 
+    radial-gradient(#e5e7eb 2px, transparent 2px),
+    radial-gradient(#e5e7eb 2px, transparent 2px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  background-color: #f9fafb;
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.tool-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--foreground);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  background-color: white;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tool-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px 0px var(--foreground);
+}
